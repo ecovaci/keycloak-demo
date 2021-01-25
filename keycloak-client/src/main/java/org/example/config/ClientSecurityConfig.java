@@ -37,10 +37,11 @@ public class ClientSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.cors().disable().antMatcher("/**")
+        http
+                .cors().and()
                 .authorizeRequests()
                 .anyRequest()
-                .authenticated()
+                .fullyAuthenticated()
                 .and()
                 .oauth2Login();
     }
