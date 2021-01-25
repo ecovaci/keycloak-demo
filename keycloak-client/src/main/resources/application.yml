@@ -1,0 +1,31 @@
+server:
+    port: 8082
+    servlet:
+      context-path: /client
+security:
+  basic:
+    enabled: false
+logging:
+  level:
+    root: DEBUG
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: jwtClient
+            client-secret: "4736a592-0fe4-487b-b265-b85968842810"
+            authorization-grant-type: authorization_code
+            redirect-uri: http://192.168.0.102:8082/client/login/oauth2/code/keycloak
+            scope:
+              - profile
+              - email
+        provider:
+          keycloak:
+            authorization-uri: http://192.168.0.101:8890/auth/realms/baeldung/protocol/openid-connect/auth
+            token-uri: http://192.168.0.101:8890/auth/realms/baeldung/protocol/openid-connect/token
+            user-info-uri: http://192.168.0.101:8890/auth/realms/baeldung/protocol/openid-connect/userinfo
+            jwk-set-uri: http://192.168.0.101:8890/auth/realms/baeldung/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+
